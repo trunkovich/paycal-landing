@@ -1,0 +1,275 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+body {
+    background-color: #f3f3f3;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #white;
+}
+
+.hero {
+    height: 640px;
+    background-image: url(/assets/hero-image.jpg);
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+.header {
+    height: 48px;
+    padding: 24px 30px 0 30px;
+}
+
+.header .logo{
+    float: left;
+    width: 136px;
+    height: 40px;
+    margin-top: 4px;
+    background-image: url(/assets/logo.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position-y: 50%;
+}
+
+.header .login-btn {
+    float: right;
+    width: 180px;
+    height: 48px;
+}
+
+.header .login-btn a {
+    display: block;
+    line-height: 18px;
+    padding: 14px 0;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 100px;
+}
+
+.header .login-btn a:link,
+.header .login-btn a:visited,
+.header .login-btn a:hover,
+.header .login-btn a:active, {
+    text-decoration: none;
+}
+
+.main {
+    margin-top: 229px;
+}
+
+.main .text {
+    line-height: 33px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: #ffffff;
+}
+
+.main .CTA {
+    width: 180px;
+    height: 48px;
+    margin: 36px auto 0 auto;
+}
+
+.main .CTA a {
+    display: block;
+    line-height: 18px;
+    padding: 14px 0;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #2bb0c9;
+    border-radius: 100px;
+}
+
+.main .CTA a:link,
+.main .CTA a:visited,
+.main .CTA a:hover,
+.main .CTA a:active, {
+    text-decoration: none;
+}
+
+.features {
+    min-height: 459px;
+    background-color: white;;
+}
+
+.features ul {
+    min-height: 459px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.features ul li {
+    width: 260px;
+    font-size: 16px;
+    text-align: center;
+    color: #4a525a;
+}
+
+.features ul li .illustration {
+    width: 260px;
+    height: 260px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.features ul li .illustration1 {
+    background-image: url(/assets/illustration_1.png);
+}
+
+.features ul li .illustration2 {
+    background-image: url(/assets/illustration_2.png);
+}
+
+.features ul li .illustration3 {
+    background-image: url(/assets/illustration_3.png);
+}
+
+.features ul li .text {
+    margin-top: 14px;
+    min-height: 66px;
+    line-height: 22px;
+}
+
+.footer {
+    height: 111px;
+    line-height: 111px;
+    background-color: #2bb0c9;
+    font-size: 16px;
+    text-align: center;
+    color: #ffffff;
+}
+
+/* Retina-specific stuff here */
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+    .header .logo{
+        background-image: url(/assets/logo@2x.png);
+    }
+    .features ul li .illustration1 {
+        background-image: url(/assets/illustration_1@2x.png);
+    }
+    .features ul li .illustration2 {
+        background-image: url(/assets/illustration_2@2x.png);
+    }
+    .features ul li .illustration3 {
+        background-image: url(/assets/illustration_3@2x.png);
+    }
+    .hero {
+        background-image: url(/assets/hero-image@2x.jpg);
+    }
+}
+
+@media (max-width: 850px) {
+    .hero {
+        background-image: url(/assets/hero_s.jpg);
+        height: 106.875vw;
+        max-height: 640px;
+    }
+    .header {
+        padding: 2px 3.5vw 0 3.5vw;
+    }
+    .header .logo {
+        width: 26vw;
+        max-width: 136px;
+    }
+    .header .login-btn {
+        width: auto;
+    }
+    .header .login-btn a {
+        border-width: 0;
+    }
+    .main {
+        padding: 0 15px;
+    }
+    .main .text {
+        font-size: 20px;
+        line-height: 27px;
+    }
+    .main .CTA {
+        margin-top: 49px;
+    }
+    .features ul {
+        flex-direction: column;
+    }
+    .footer {
+        height: 54px;
+        line-height: 54px;
+        font-size: 12px;
+    }
+
+
+    
+    /* Retina-specific stuff here */
+    @media 
+    (-webkit-min-device-pixel-ratio: 2), 
+    (min-resolution: 192dpi) { 
+        .hero {
+            background-image: url(/assets/hero_s@2x.jpg);
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 2px 5vw 0 5vw;
+    }
+    .main {
+        padding: 0 15px;
+        margin-top: 150px;
+        margin-top: 30vw;
+    }
+}
+
+@media (max-width: 500px) {
+    .main {
+        margin-top: 116px;
+        margin-top: 29vw;
+    }
+}
+
+@media (max-width: 400px) {
+    .main {
+        margin-top: 64px;
+        margin-top: 20vw;
+    }
+}
+
+@media (max-width: 320px) {
+    .hero {
+        background-image: url(/assets/hero_xs.jpg);
+    }
+    /* Retina-specific stuff here */
+    @media 
+    (-webkit-min-device-pixel-ratio: 2), 
+    (min-resolution: 192dpi) { 
+        .hero {
+            background-image: url(/assets/hero_xs@2x.jpg);
+        }
+    }
+}
