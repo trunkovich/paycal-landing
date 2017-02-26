@@ -8,6 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- start Mixpanel -->
+    <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+    0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+    for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+mixpanel.init("1468a59662a5ec49537443eac34a118c");</script>
+    <!-- end Mixpanel -->
+
 </head>
 <body>
     <div class="container">
@@ -47,5 +55,96 @@
             All Rights Reserve Paycal 2017
         </section>
     </div>
+
+    <script>
+        function ready() {
+
+            var ctaLink = document.querySelector('.CTA a');
+            var loginLink = document.querySelector('.login-btn a');
+
+            var mixpanelDataStr = getCookie('pcl-mixpanel');
+            var mixpanelData;
+            if (!mixpanelDataStr) {
+                mixpanelData = {};
+                mixpanelDataStr = JSON.stringify(mixpanelData);
+                setCookie('pcl-mixpanel', mixpanelDataStr);
+            } else {
+                mixpanelData = JSON.parse(mixpanelDataStr);
+            }
+
+            if (!mixpanelData['landingPage1_landed']) {
+                mixpanel.track('Page Viewed', { page: 'Landing Page' });
+                mixpanelData['landingPage1_landed'] = true;
+                mixpanelDataStr = JSON.stringify(mixpanelData);
+                setCookie('pcl-mixpanel', mixpanelDataStr);
+            }
+
+
+            if (!mixpanelData['landingPage1_get_started_clicked']) {
+                ctaLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var url = this.getAttribute('href');
+                    mixpanelData['landingPage1_get_started_clicked'] = true;
+                    mixpanelDataStr = JSON.stringify(mixpanelData);
+                    setCookie('pcl-mixpanel', mixpanelDataStr);
+                    mixpanel.track("Get Started Clicked", null, function () {
+                        window.location = url;
+                    });
+                });
+            }
+
+            if (!mixpanelData['landingPage1_login_clicked']) {
+                loginLink.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    var url = this.getAttribute('href');
+                    mixpanelData['landingPage1_login_clicked'] = true;
+                    mixpanelDataStr = JSON.stringify(mixpanelData);
+                    setCookie('pcl-mixpanel', mixpanelDataStr);
+                    mixpanel.track("Login Clicked", null, function () {
+                        window.location = url;
+                    });
+                });
+            }
+        }
+
+        function getCookie(name) {
+            var matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+        function setCookie(name, value, options) {
+            options = options || {};
+
+            var expires = options.expires;
+
+            if (typeof expires == "number" && expires) {
+                var d = new Date();
+                d.setTime(d.getTime() + expires * 1000);
+                expires = options.expires = d;
+            }
+            if (expires && expires.toUTCString) {
+                options.expires = expires.toUTCString();
+            }
+
+            value = encodeURIComponent(value);
+
+            var updatedCookie = name + "=" + value;
+
+            for (var propName in options) {
+                updatedCookie += "; " + propName;
+                var propValue = options[propName];
+                if (propValue !== true) {
+                    updatedCookie += "=" + propValue;
+                }
+            }
+
+            document.cookie = updatedCookie;
+        }
+
+        document.addEventListener("DOMContentLoaded", ready);
+    </script>
+
 </body>
 </html>
