@@ -73,7 +73,7 @@ mixpanel.init("1468a59662a5ec49537443eac34a118c");</script>
             }
 
             if (!mixpanelData['landingPage1_landed']) {
-                mixpanel.track('Page Viewed', { page: 'Landing Page' });
+                mixpanel.track('Landed', { page: 'Landing Page 1' });
                 mixpanelData['landingPage1_landed'] = true;
                 mixpanelDataStr = JSON.stringify(mixpanelData);
                 setCookie('pcl-mixpanel', mixpanelDataStr);
